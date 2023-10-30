@@ -1,10 +1,13 @@
 import { FirestoreAdapter } from '@auth/firebase-adapter';
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import GoogleProvider from 'next-auth/providers/google';
 
-import type { NextAuthOptions } from 'next-auth';
+import {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from 'next';
+import { getServerSession, type NextAuthOptions } from 'next-auth';
 import { adminAuth, adminDb } from './firebase-admin';
-import prisma from './prisma/client';
 
 export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
@@ -15,6 +18,18 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    // Next we need to ensure its within each client session
+    session: async ({ session, token }) => {
+      //   Add ID to user field
+      if (session?.user) {
+        if (token?.sub) {
+          session.user.id = token.sub;
+          const firebaseToken = await adminAuth.createCustomToken(token.sub);
+          session.firebaseToken = firebaseToken;
+        }
+      }
+      return session;
+    },
     // By default we do not have the id appended to the token
     // Update next-auth.d.ts to ensure custom values are typed
     jwt: async ({ user, token }) => {
@@ -23,19 +38,17 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    // Next we need to ensure its within each client session
-    session: async ({ session, token }) => {
-      if (session.user) {
-        if (token.sub) {
-          session.user.id = token.sub;
-          const firebaseToken = await adminAuth.createCustomToken(token.sub);
-          session.firebaseToken = firebaseToken;
-        }
-      }
-      return session;
-    },
   },
-
-  // adapter: FirestoreAdapter(adminDb),
-  adapter: PrismaAdapter(prisma),
+  adapter: FirestoreAdapter(adminDb),
+  // adapter: PrismaAdapter(prisma),
 } satisfies NextAuthOptions;
+
+// Use it in server contexts
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, authOptions);
+}

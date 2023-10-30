@@ -1,6 +1,5 @@
 import { CheckIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
-import { Button } from './ui/button';
 import CheckoutButton from './CheckoutButton';
 // import CheckoutButton from "./CheckoutButton";
 
@@ -21,7 +20,7 @@ const tiers = [
   },
   {
     name: 'Pro',
-    id: 'si_OnlcsLNQYbMVzV',
+    id: 'pro',
     href: '#',
     priceMonthly: '£5.99',
     description: 'Unlock the Full Potential with Pro!',
@@ -95,7 +94,6 @@ export default async function PricingCards({
             </article>
 
             {/* CONTROLS */}
-            {/* {tier.id && <CheckoutButton subscriptionId={tier.id} />} */}
             {redirect ? (
               <Link
                 href='/register'
@@ -104,7 +102,7 @@ export default async function PricingCards({
                 Get started today
               </Link>
             ) : (
-              tier.id && <CheckoutButton />
+              tier.id && <CheckoutButton subscriptionId={tier.id} />
             )}
           </div>
         ))}

@@ -1,7 +1,6 @@
 // Import the built-in types
 
-import { User } from '@/libs/prisma/client';
-import { JWT, Session, DefaultSession } from 'next-auth';
+import { DefaultSession } from 'next-auth';
 
 // Adjust the path if needed to point to your Prisma client
 // Declare module to merge the types with the existing `next-auth` types
@@ -16,16 +15,8 @@ declare module 'next-auth' {
   interface Session {
     firebaseToken?: string;
     user: {
-      id: string;
-      role: string; // Add your custom role field here
+      /** The user's postal address. */
+      id?: string;
     } & DefaultSession['user'];
-  }
-
-  /**
-   * Add any custom fields to the JWT token here.
-   * E.g., the role from your database.
-   */
-  interface JWT {
-    role?: string; // Your custom role field
   }
 }

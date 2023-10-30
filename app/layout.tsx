@@ -4,8 +4,8 @@ import { ThemeProvider } from '@/context/theme-provider';
 import type { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 
-import './globals.css';
 import FirebaseAuthProvider from '@/context/firebase-auth-provider';
+import './globals.css';
 
 const fontType = Work_Sans({ subsets: ['latin'] });
 

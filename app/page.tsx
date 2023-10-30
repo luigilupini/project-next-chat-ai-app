@@ -1,12 +1,11 @@
 import { authOptions } from '@/auth';
 import { ImageIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+  // console.log(session);
   return (
     <main>
       <div className='relative isolate pt-14 dark:bg-gray-900'>
