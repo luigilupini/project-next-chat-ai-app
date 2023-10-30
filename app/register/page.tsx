@@ -6,7 +6,7 @@ export default async function Register() {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className='h-full pb-40 overflow-hidden bg-gray-900 isolate'>
+    <div className='w-full h-full pb-40 overflow-hidden bg-gray-900 isolate'>
       <div className='px-6 pt-16 pb-12 mx-auto text-center text-white max-w-7xl lg:px-8'>
         <div className='max-w-4xl mx-auto'>
           <p className='mt-2 text-4xl font-bold tracking-tight sm:text-5xl'>

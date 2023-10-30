@@ -1,16 +1,16 @@
 import { MessagesSquareIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
+import CreateChatButton from './CreateChatButton';
 import Logo from './Logo';
 import { ModeToggle } from './ModeToggle';
+import UpgradeBanner from './UpgradeBanner';
 import UserButton from './UserButton';
-import CreateChatButton from './CreateChatButton';
 
 export default async function Header() {
   const session = await getServerSession();
   return (
-    // we have a max width of 7xl that we centering with mx-auto
-    <header className='sticky top-0 z-50 bg-white shadow-sm dark:bg-gray-900'>
+    <header className='sticky top-0 z-50 px-4 bg-white shadow-sm dark:bg-gray-900'>
       <nav className='flex flex-col items-center gap-4 p-5 pl-2 mx-auto bg-white sm:flex-row dark:bg-gray-900 max-w-7xl'>
         <Logo />
         {/* controls */}
@@ -29,12 +29,13 @@ export default async function Header() {
               </Link>
             </>
           )}
-          <UserButton session={session} />
           <ModeToggle />
+          <UserButton session={session} />
         </div>
       </nav>
 
-      {/* upgrade banner */}
+      {/* upgrade banner for non-pro members */}
+      <UpgradeBanner />
     </header>
   );
 }

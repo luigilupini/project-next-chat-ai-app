@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 
 import FirebaseAuthProvider from '@/context/firebase-auth-provider';
+import SubscriptionProvider from '@/context/subscription-provider';
 import './globals.css';
 
 const fontType = Work_Sans({ subsets: ['latin'] });
@@ -22,17 +23,19 @@ export default function RootLayout({
   return (
     <ClientProviders>
       <html lang='en'>
-        <body className={fontType.className}>
+        <body className={`${fontType.className} h-screen w-screen`}>
           <FirebaseAuthProvider>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='system'
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Header />
-              {children}
-            </ThemeProvider>
+            <SubscriptionProvider>
+              <ThemeProvider
+                attribute='class'
+                defaultTheme='system'
+                enableSystem
+                disableTransitionOnChange
+              >
+                <Header />
+                {children}
+              </ThemeProvider>
+            </SubscriptionProvider>
           </FirebaseAuthProvider>
         </body>
       </html>
