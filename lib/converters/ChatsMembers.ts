@@ -20,6 +20,7 @@ export interface ChatMembers {
   image: string;
 }
 
+// 🔥 FIRESTORE DATA CONVERTER & HELPER FUNCTIONS
 export const chatMembersConverter: FirestoreDataConverter<ChatMembers> = {
   // 1) PUSH FROM FIRESTORE (toFirestore method): 🔥 This function is
   // responsible for transforming the object into a format that Firestore can
@@ -33,6 +34,7 @@ export const chatMembersConverter: FirestoreDataConverter<ChatMembers> = {
       isAdmin: !!member.isAdmin,
       chatId: member.chatId,
       image: member.image,
+      // ... other fields
     };
   },
   // 2) PULL FROM FIRESTORE (fromFirestore method): 🔥 This function converts
@@ -53,11 +55,12 @@ export const chatMembersConverter: FirestoreDataConverter<ChatMembers> = {
       isAdmin: data.isAdmin,
       chatId: data.chatId,
       image: data.image,
+      // ... other fields
     };
   },
 };
 
-// 3) CONVERTERS (subscriptionRef function): 🔥 This function creates a Firestore
+// 3) CONVERTERS (helper functions): 🔥 This function creates a Firestore
 // collection reference for us, with the converter applied. This ensures that
 // any data written to or read from this collection will be automatically
 // transformed using the logic defined in the converter.

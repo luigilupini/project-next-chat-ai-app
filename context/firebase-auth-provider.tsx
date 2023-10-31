@@ -6,6 +6,7 @@ import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
+// If the user does not have a firebaseToken, sign them out.
 async function syncFirebaseAuth(session: Session) {
   if (session && session.firebaseToken) {
     try {
@@ -18,6 +19,7 @@ async function syncFirebaseAuth(session: Session) {
   }
 }
 
+// 🔥 FIRESTORE
 export default function FirebaseAuthProvider({
   children,
 }: {

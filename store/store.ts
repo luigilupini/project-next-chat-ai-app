@@ -1,4 +1,5 @@
 import { Subscription } from '@/types/Subscription';
+import { mountStoreDevtool } from 'simple-zustand-devtools';
 import { create } from 'zustand';
 
 export type LanguagesSupported =
@@ -56,6 +57,11 @@ export const useLanguageStore = create<LanguageState>()((set, get) => ({
   },
 }));
 
+// Mount the store to the devtools in development mode:
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('useLanguageStore', useLanguageStore);
+}
+
 // ฅ՞•ﻌ•՞ฅ SUBSCRIPTION STORE
 interface SubscriptionState {
   subscription: Subscription | null | undefined;
@@ -72,3 +78,8 @@ export const useSubscriptionStore = create<SubscriptionState>()((set, get) => ({
     return subscription.status === 'active' && subscription.role === 'pro';
   },
 }));
+
+// Mount the store to the devtools in development mode:
+if (process.env.NODE_ENV === 'development') {
+  mountStoreDevtool('useSubscriptionStore', useSubscriptionStore);
+}

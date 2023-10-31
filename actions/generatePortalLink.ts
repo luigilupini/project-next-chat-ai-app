@@ -9,6 +9,7 @@ import { redirect } from 'next/navigation';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  // @ts-ignore
   apiVersion: '2023-08-16',
 });
 
@@ -23,11 +24,9 @@ export async function generatePortalLink() {
       ? `http://${hostUrl}/register`
       : `https://${hostUrl}/register`;
 
-  // prettier-ignore
-  const doc = await adminDb
-    .collection('customers')
-    .doc(session?.user.id)
-    .get();
+  // 🔥 Get the customer record from Firestore based on the users session id from
+  // our authentication.
+  const doc = await adminDb.collection('customers').doc(session?.user.id).get();
 
   if (!doc.data)
     return console.error(

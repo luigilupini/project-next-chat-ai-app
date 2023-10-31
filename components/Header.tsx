@@ -1,3 +1,4 @@
+import { authOptions } from '@/auth';
 import { MessagesSquareIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
@@ -8,9 +9,9 @@ import UpgradeBanner from './UpgradeBanner';
 import UserButton from './UserButton';
 
 export default async function Header() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   return (
-    <header className='sticky top-0 z-50 px-4 bg-white shadow-sm dark:bg-gray-900'>
+    <header className='sticky top-0 z-50 bg-white shadow-sm dark:bg-gray-900'>
       <nav className='flex flex-col items-center gap-4 p-5 pl-2 mx-auto bg-white sm:flex-row dark:bg-gray-900 max-w-7xl'>
         <Logo />
         {/* controls */}

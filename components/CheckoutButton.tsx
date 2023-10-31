@@ -5,14 +5,10 @@ import { useSubscriptionStore } from '@/store/store';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 import ManageAccountButton from './ManageAccountButton';
-import LoadingSpinner from './loadingSpinner';
 
-export default function CheckoutButton({
-  subscriptionId,
-}: {
-  subscriptionId?: string;
-}) {
+export default function CheckoutButton() {
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
 

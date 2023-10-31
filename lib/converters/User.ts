@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore';
 import { User } from 'next-auth';
 
+// 🔥 FIRESTORE DATA CONVERTER & HELPER FUNCTIONS
 const userConverter: FirestoreDataConverter<User> = {
   // 1) PUSH FROM FIRESTORE (toFirestore method): 🔥 This function is
   // responsible for transforming the object into a format that Firestore can
@@ -21,6 +22,7 @@ const userConverter: FirestoreDataConverter<User> = {
       email: customer.email,
       image: customer.image,
       name: customer.name,
+      // ... other fields
     };
   },
   // 2) PULL FROM FIRESTORE (fromFirestore method): 🔥 This function converts
@@ -33,17 +35,17 @@ const userConverter: FirestoreDataConverter<User> = {
     options: SnapshotOptions
   ): User {
     const data = snapshot.data(options);
-
     return {
       id: snapshot.id,
       email: data.email,
       image: data.image,
       name: data.name,
+      // ... other fields
     };
   },
 };
 
-// 3) CONVERTER (subscriptionRef function): 🔥 This function creates a Firestore
+// 3) CONVERTER (helper function): 🔥 This function creates a Firestore
 // collection reference for us, with the converter applied. This ensures that
 // any data written to or read from this collection will be automatically
 // transformed using the logic defined in the converter.

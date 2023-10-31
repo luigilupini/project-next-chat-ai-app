@@ -12,9 +12,9 @@ import { useSubscriptionStore } from '@/store/store';
 import { StarIcon } from 'lucide-react';
 import { Session } from 'next-auth';
 import { signIn, signOut } from 'next-auth/react';
+import LoadingSpinner from './LoadingSpinner';
 import ManageAccountButton from './ManageAccountButton';
 import { UserAvatar } from './UserAvatar';
-import LoadingSpinner from './loadingSpinner';
 import { Button } from './ui/button';
 
 export default function UserButton({ session }: { session: Session | null }) {

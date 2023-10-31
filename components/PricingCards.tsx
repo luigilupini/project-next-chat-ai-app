@@ -1,7 +1,6 @@
 import { CheckIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import CheckoutButton from './CheckoutButton';
-// import CheckoutButton from "./CheckoutButton";
 
 const tiers = [
   {
@@ -102,7 +101,7 @@ export default async function PricingCards({
                 Get started today
               </Link>
             ) : (
-              tier.id && <CheckoutButton subscriptionId={tier.id} />
+              tier.id && <CheckoutButton />
             )}
           </div>
         ))}

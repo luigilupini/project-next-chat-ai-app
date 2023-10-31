@@ -13,6 +13,7 @@ export interface Customer {
   stripeLink: string;
 }
 
+// 🔥 FIRESTORE DATA CONVERTER & HELPER FUNCTIONS
 const customerConverter: FirestoreDataConverter<Customer> = {
   // 1) PUSH FROM FIRESTORE (toFirestore method): 🔥 This function is
   // responsible for transforming the object into a format that Firestore can
@@ -23,6 +24,7 @@ const customerConverter: FirestoreDataConverter<Customer> = {
       email: customer.email,
       stripeId: customer.stripeId,
       stripeLink: customer.stripeLink,
+      // ... other fields
     };
   },
   // 2) PULL FROM FIRESTORE (fromFirestore method): 🔥 This function converts
@@ -40,11 +42,12 @@ const customerConverter: FirestoreDataConverter<Customer> = {
       email: data.email,
       stripeId: data.stripeId,
       stripeLink: data.stripeLink,
+      // ... other fields
     };
   },
 };
 
-// 3) CONVERTERS (subscriptionRef function): 🔥 This function creates a Firestore
+// 3) CONVERTERS (helper function): 🔥 This function creates a Firestore
 // collection reference for us, with the converter applied. This ensures that
 // any data written to or read from this collection will be automatically
 // transformed using the logic defined in the converter.

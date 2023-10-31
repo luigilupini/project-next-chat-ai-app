@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/context/theme-provider';
 import type { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 
+import { Toaster } from '@/components/ui/toaster';
 import FirebaseAuthProvider from '@/context/firebase-auth-provider';
 import SubscriptionProvider from '@/context/subscription-provider';
 import './globals.css';
@@ -34,6 +35,7 @@ export default function RootLayout({
               >
                 <Header />
                 {children}
+                <Toaster />
               </ThemeProvider>
             </SubscriptionProvider>
           </FirebaseAuthProvider>

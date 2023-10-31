@@ -8,6 +8,7 @@ import {
   collection,
 } from 'firebase/firestore';
 
+// 🔥 FIRESTORE DATA CONVERTER & HELPER FUNCTIONS
 const subscriptionConverter: FirestoreDataConverter<Subscription> = {
   // 1) PUSH FROM FIRESTORE (toFirestore method): 🔥
   // This function is responsible for transforming the subscription object
@@ -54,16 +55,16 @@ const subscriptionConverter: FirestoreDataConverter<Subscription> = {
       trial_start: data.trial_start,
       trial_end: data.trial_end,
       role: data.role,
+      // ... other fields
     };
     return sub;
   },
 };
 
-// 3) CONVERTER (subscriptionRef function): 🔥
-// This function creates a Firestore collection reference for a user's
-// subscriptions, with the subscriptionConverter applied. This ensures that
-// any data written to or read from this collection will be automatically
-// transformed using the logic defined in the subscriptionConverter.
+// 3) CONVERTER (helper function): 🔥 This function creates a Firestore
+// collection reference for a user's subscriptions, with subscriptionConverter
+// applied. This ensures that any data written to or read from this collection
+// will be transformed using the logic defined in the subscriptionConverter.
 export const subscriptionRef = (userId: string) =>
   collection(db, 'customers', userId, 'subscriptions').withConverter(
     subscriptionConverter
