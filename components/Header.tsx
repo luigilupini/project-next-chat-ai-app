@@ -3,6 +3,7 @@ import { MessagesSquareIcon } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import CreateChatButton from './CreateChatButton';
+import LanguageSelect from './LanguageSelect';
 import Logo from './Logo';
 import { ModeToggle } from './ModeToggle';
 import UpgradeBanner from './UpgradeBanner';
@@ -18,6 +19,7 @@ export default async function Header() {
         <div className='flex items-center justify-end flex-1 gap-4'>
           {session ? (
             <>
+              <LanguageSelect />
               <Link href='/chat' prefetch={false}>
                 <MessagesSquareIcon className='text-black dark:text-white' />
               </Link>

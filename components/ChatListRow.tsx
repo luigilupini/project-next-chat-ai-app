@@ -28,7 +28,7 @@ export default function ChatListRow({ chatId }: { chatId: string }) {
     <div
       key={chatId}
       onClick={() => router.push(`/chat/${chatId}`)}
-      className='flex items-center p-5 space-x-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-700'
+      className='flex items-center p-5 m-2 space-x-2 border rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-700'
     >
       <UserAvatar
         name={message?.user.name || session?.user.name}
@@ -42,7 +42,7 @@ export default function ChatListRow({ chatId }: { chatId: string }) {
             [message?.user.name || session?.user.name].toString().split(' ')[0]}
         </p>
 
-        <p className='text-sm text-gray-400 line-clamp-1'>
+        <p className='text-xs text-gray-400 line-clamp-1'>
           {message?.translated?.[language] || 'Get the conversation started'}
         </p>
       </div>
