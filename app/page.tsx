@@ -1,4 +1,3 @@
-import { ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function Home() {
@@ -48,11 +47,11 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className='flow-root mt-16 sm:mt-24'>
+            {/* <div className='flow-root mt-16 sm:mt-24'>
               <div className='p-2 -m-2 rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4'>
                 <ImageIcon className='w-full h-full opacity-50' />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

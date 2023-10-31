@@ -51,8 +51,8 @@ function CreateChatButton({ isLarge }: { isLarge?: boolean }) {
     if (!isPro && chats.length >= 3) {
       toast({
         title: 'Free plan limit exceeded',
-        description: `You've'exceeded the limit of chats for the FREE plan.
-          Please upgrade to PRO to continue adding users to chats!`,
+        description: `You've'exceeded the limit of chats for the Free tier.
+          Upgrade to Pro!`,
         variant: 'destructive',
         action: (
           <ToastAction

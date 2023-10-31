@@ -4,7 +4,6 @@ import { Message, sortedMessagesRef } from '@/lib/converters/Message';
 import { useLanguageStore } from '@/store/store';
 import { MessageCircleIcon } from 'lucide-react';
 import { Session } from 'next-auth';
-import { createRef, useEffect } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import LoadingSpinner from './LoadingSpinner';
 import { UserAvatar } from './UserAvatar';
@@ -20,7 +19,7 @@ export default function ChatMessages({
 }) {
   const language = useLanguageStore((state) => state.language);
   // 👇🏻 Used to scroll to the bottom of the messages
-  const messagesEndRef = createRef<HTMLDivElement>();
+  // const messagesEndRef = createRef<HTMLDivElement>();
 
   // 🔥 FIREBASE & REACT-FIREBASE HOOKS
   // Get the messages for the current chatId. We use the sortedMessagesRef to
@@ -33,9 +32,9 @@ export default function ChatMessages({
     sortedMessagesRef(chatId),
     { initialValue: initialMessages }
   );
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, messagesEndRef]);
+  // useEffect(() => {
+  //   messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // }, [messages, messagesEndRef]);
 
   return (
     <div className='p-5'>
@@ -74,7 +73,7 @@ export default function ChatMessages({
           </div>
         );
       })}
-      <div ref={messagesEndRef} />
+      {/* <div ref={messagesEndRef} /> */}
     </div>
   );
 }

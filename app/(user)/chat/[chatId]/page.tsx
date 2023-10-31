@@ -1,4 +1,5 @@
 import { authOptions } from '@/auth';
+import AdminControls from '@/components/AdminControls';
 // import AdminControls from "@/components/AdminControls";
 import ChatInput from '@/components/ChatInput';
 import ChatMembersBadges from '@/components/ChatMembersBadges';
@@ -37,7 +38,7 @@ export default async function Chats({ params: { chatId } }: Props) {
 
   return (
     <>
-      {/* <AdminControls chatId={chatId} /> */}
+      <AdminControls chatId={chatId} />
       <ChatMembersBadges chatId={chatId} />
 
       <div className='flex-1'>

@@ -36,11 +36,14 @@ export default function ChatMembersBadges({ chatId }: { chatId: string }) {
               <div className='flex items-center space-x-2'>
                 <UserAvatar name={member.email} image={member.image} />
               </div>
-
               <div>
                 <p>{member.email}</p>
-                {member.userId === adminId && (
-                  <p className='text-indigo-400 animate-pulse'>Admin</p>
+                {member.userId === adminId ? (
+                  <p className='font-medium text-indigo-400 animate-pulse'>
+                    Admin
+                  </p>
+                ) : (
+                  <p className='font-medium'>User</p>
                 )}
               </div>
             </Badge>
